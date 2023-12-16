@@ -47,8 +47,8 @@ class FrequencyValidator:
 
     def __call__(self, data):
         #  Нельзя выполнять привычку реже, чем 1 раз в 7 дней
-        frequency = data.get('frequency')
-        if frequency < 7:
+        frequency = bool(dict(data).get("frequency"))
+        if frequency > 7:
             raise serializers.ValidationError('Нельзя выполнять привычку реже, чем 1 раз в 7 дней')
 
 

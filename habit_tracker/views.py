@@ -10,11 +10,13 @@ from habit_tracker.serializers import HabitSerializer
 
 
 class HabitCreateAPIView(CreateAPIView):
+    """Habit create"""
     serializer_class = HabitSerializer
     permission_classes = [IsAuthenticated]
 
 
 class HabitListAPIView(ListAPIView):
+    """Shows list of habits"""
     serializer_class = HabitSerializer
     pagination_class = HabitPaginator
     permission_classes = [IsAuthenticated]
@@ -24,6 +26,7 @@ class HabitListAPIView(ListAPIView):
 
 
 class HabitRetrieveAPIView(RetrieveAPIView):
+    """Get one habit on id"""
     serializer_class = HabitSerializer
     permission_classes = [IsAuthenticated, IsOwner]
 
@@ -32,6 +35,7 @@ class HabitRetrieveAPIView(RetrieveAPIView):
 
 
 class HabitUpdateAPIView(UpdateAPIView):
+    """update habit"""
     serializer_class = HabitSerializer
     permission_classes = [IsAuthenticated, IsOwner]
 
@@ -40,6 +44,7 @@ class HabitUpdateAPIView(UpdateAPIView):
 
 
 class HabitDestroyAPIView(DestroyAPIView):
+    """Destroys a habit"""
     permission_classes = [IsAuthenticated, IsOwner]
 
     def get_queryset(self):
@@ -47,6 +52,7 @@ class HabitDestroyAPIView(DestroyAPIView):
 
 
 class PublicHabitListAPIView(generics.ListAPIView):
+    """List of public habits"""
     serializer_class = HabitSerializer
     queryset = Habit.objects.filter(is_public=True)
     permission_classes = [IsAuthenticated]
